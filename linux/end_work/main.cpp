@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
-#include "def.h"
+#include "bstree.h"
 using namespace std;
 
 /***********************************************************/
