@@ -7,7 +7,6 @@ BSTree::~BSTree()  //析构函数
 	destroy();
 }
 
-
 void BSTree::insert(int key)  //将key节点插入到二叉树中
 {
 	BSTNode *z = new BSTNode(key, NULL, NULL, NULL);  //根据插入的key生成新的二叉树节点(z)
@@ -32,7 +31,6 @@ void BSTree::PreOrder()
 {
 	PreOrder(root);  //传入根节点
 }
-
 
 void BSTree::InOrder(BSTNode *tree)  //中序二叉树遍历
 {
