@@ -18,7 +18,7 @@ int main(void)
 	for (int i = 0; i < 6; i++)
 	{
 		cout << array[i] << " ";
-		tree->insert(array[i]);  //调用插入函数，生成二叉查找树
+		tree->insert(&array[i]);  //调用插入函数，生成二叉查找树
 	}
 
 	cout << endl << endl;

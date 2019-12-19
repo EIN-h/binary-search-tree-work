@@ -9,19 +9,19 @@ public:
 	BSTree();  //构造函数
 	~BSTree();  //析构函数
 
-	void insert(int key);  //将key节点插入到二叉树中
+	void insert(void *key);  //将key节点插入到二叉树中
 
 	void PreOrder();  //前序二叉树遍历
 	void InOrder();  //中序二叉树遍历
 	void PostOrder();  //后序二叉树遍历
 
-	BSTNode *search(int key);  //递归实现，在二叉树中查找key节点
-	BSTNode *IteratorSearch(int key);  //迭代实现，在二叉树中查找key节点
+	BSTNode *search(void *key);  //递归实现，在二叉树中查找key节点
+	BSTNode *IteratorSearch(void *key);  //迭代实现，在二叉树中查找key节点
 
 	BSTNode *successor(BSTNode *x);  //找节点(x)的后继节点。即，查找"二叉树中数据值大于该节点"的"最小节点"
 	BSTNode *predecessor(BSTNode *x);  //找节点(x)的前驱节点。即，查找"二叉树中数据值小于该节点"的"最大节点"
 
-	void remove(int key);  //删除key节点
+	void remove(void *key);  //删除key节点
 
 	void destroy();  //销毁二叉树
 
@@ -32,8 +32,8 @@ private:
 	void InOrder(BSTNode *tree);  //中序二叉树遍历
 	void PostOrder(BSTNode *tree);  //后序二叉树遍历
 
-	BSTNode *search(BSTNode *x, int key);  //递归实现，在”二叉树x“中查找key节点
-	BSTNode *IteratorSearch(BSTNode *x, int key);  //迭代实现，在“二叉树x”中查找key节点
+	BSTNode *search(BSTNode *x, void *key);  //递归实现，在”二叉树x“中查找key节点
+	BSTNode *IteratorSearch(BSTNode *x, void *key);  //迭代实现，在“二叉树x”中查找key节点
 
 	BSTNode *minimum(BSTNode *tree);  //查找最小节点：返回tree为根节点的二叉树的最小节点
 	BSTNode *maximum(BSTNode *tree);  //查找最大节点：返回tree为根节点的二叉树的最大节点
