@@ -1,90 +1,102 @@
 #include <iostream>
-#include <stdlib.h>
 #include "bstree.h"
+#include "menu.h"
 using namespace std;
+#define TT int
 
-/***********************************************************/
-/*  二叉查找树 —— 插入、遍历、查找、删除、销毁
-/**********************************************************/
+int main() {
+	TT root = 5;
+	TT a = 1, b = 2, c = 3, d = 4, e = 6, f = 8;
 
-int main(void)
-{
-	/************************/
-	/*          插入
-	/************************/
-	BSTree *tree = new BSTree();
-	int array[6] = { 11, 33, 18, 24, 44, 66 };
-	cout << "二叉树数值：" << endl;
-	for (int i = 0; i < 6; i++)
-	{
-		cout << array[i] << " ";
-		tree->insert(&array[i]);  //调用插入函数，生成二叉查找树
+	BSTree<TT> bTree(root);
+	bTree.insert(a);
+	bTree.insert(b);
+	bTree.insert(c);
+	bTree.insert(d);
+	bTree.insert(e);
+	bTree.insert(f);
+	std::cout << "*** We have initialize a aTree which have a root[5] and elements[1,2,3,4,5,8] for you ***";
+
+	int command = 0;
+	while (command != 9) {
+		instructions();
+		std::cin >> command;
+		switch (command)
+		{
+		case 1: {
+			TT k;
+			std::cout << "please enter the key you want to insert: ";
+			std::cin >> k;
+			bTree.insert((TT)k);
+			std::cout << success;
+			break;
+		}
+		case 2: {
+			TT k;
+			std::cout << "please enter the key you want to delete: ";
+			std::cin >> k;
+			bTree.remove(k);
+			break;
+		}
+		case 3: {
+			if (bTree.countNodes() == 0)
+				std::cout << empty;
+			else{
+				std::cout << "preoder traversal: ";
+				bTree.preOrder();
+			}
+			break;
+		}
+		case 4: {
+			if (bTree.countNodes() == 0)
+				std::cout << empty;
+			else {
+				std::cout << "in order traversal: ";
+				bTree.inOrder();
+			}
+			break;
+		}
+		case 5: {
+			if (bTree.countNodes() == 0)
+				std::cout << empty;
+			else {
+			std::cout << "post order traversal: ";
+			bTree.postOrder();
+			}
+			break;
+		}
+		case 6: {
+			std::cout << "nodes number: ";
+			std::cout << bTree.countNodes();
+			break;
+		}
+		case 7: {
+			TT k;
+			std::cout << "please enter the key you want to search: ";
+			std::cin >> k;
+			if (bTree.findNode(k))
+				std::cout << "The element is in the bstree, you can choose 3/4/5 to print it.";
+			else
+				std::cout << not_exist;
+			break;
+		}
+		case 8: {
+			std::cout << "empty or not: ";
+			if(bTree.countNodes() == 0)
+				std::cout << "empty";
+			else
+				std::cout << "not empty";
+			break;
+		}
+		case 9: {
+			bTree.makeEmpty();
+			std::cout << "Good Bye!";
+			break;
+		}
+		default:
+			break;
+		}
 	}
-
-	cout << endl << endl;
-
-
-	/************************/
-	/*          遍历
-	/************************/
-	cout << "前序遍历：";
-	tree->PreOrder();
 	cout << endl;
-
-	cout << "中序遍历：";
-	tree->InOrder();
-	cout << endl;
-
-	cout << "后序遍历：";
-	tree->PostOrder();
-	cout << endl << endl;
-
-
-	/************************/
-	/*          查找
-	/************************/
-	int keyword;  //查找节点的关键字
-	cout << "请输入要查找的节点：";
-	cin >> keyword;
-	cout << endl;
-	BSTNode *node = tree->IteratorSearch(keyword);  //获取数值的地址
-	if (node)  //判断有没有地址
-	{
-		cout << "关键字为“" << keyword << "”的节点，存在。" << endl;
-	}
-	else
-	{
-		cout << "关键字为“" << keyword << "”的节点，不存在。" << endl;
-	}
-	cout << endl << endl;
-
-
-	/************************/
-	/*          删除
-	/************************/
-	int DelNode;  //要删除的节点
-	cout << "请输入要删除的节点：";
-	cin >> DelNode;
-	tree->remove(DelNode);
-	cout << endl;
-
-	cout << "删除操作后，(前序)遍历：";
-	tree->PreOrder();
-	cout << endl;
-	cout << "删除操作后，(中序)遍历：";
-	tree->InOrder();
-	cout << endl;
-	cout << "删除操作后，(后序)遍历：";
-	tree->PostOrder();
-	cout << endl << endl;
-
-
-	/************************/
-	/*          销毁
-	/************************/
-	tree->destroy();
-
-
-	system("pause");
 	return 0;
 }
